@@ -1,3 +1,5 @@
+
+
 /* $.ajax({
     url: 'example.php', // 요청 할 주소
     async: true, // false 일 경우 동기 요청으로 변경
@@ -70,10 +72,21 @@ function getData() {
   });
 
  */
+
+//callback
+var plus = function(a, b, callback){
+    var result = a+b
+    callback(result);
+}
+
+plus(5, 10, function(res){
+    console.log(res);
+})
+
 //bad callback
 function sleep(callback) {
     setTimeout(function () {
-        callback();
+        callBback();
     }, 1000);
 }
 sleep(function () {
@@ -101,21 +114,23 @@ function inputSearchDate() {
         });
     });
 }
+
+
 inputSearchDate().then(function(data){
     console.log(data);
 }, function(err){
-    console.log(err);
-});
-
-
-inputSearchDate().then(function (data) {
-    console.log(data);
-}).catch(function (error) {
     console.log(err);
 }).then(function(){
     console.log('a');
 }).then(function(){
     console.log('b');
+});
+
+
+inputSearchDate().then(function (data) {
+    throw new Error("error inputSearchDate");
+}).catch(function (err) {
+    console.log(err);
 });
 
 function buyAsync(mymoney) {
