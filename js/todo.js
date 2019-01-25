@@ -1,6 +1,6 @@
-Vue.component('todo-item', {
-    props: ['todo'],
-    template: '<li>{{todo.text}}</li>',
+Vue.component('popup', {
+    template: '#popup'
+    //template: '<li>{{todo.text}}<div v-if="todo.completed"><img src="./source/todo_done.png"></div><div else><img src="./source/todo_default.png"></div></li>',
 })
 
 var app = new Vue({
@@ -22,15 +22,18 @@ var todoApp = new Vue({
            todos: [
                {
                    text: '일번ㅁㄴㅇㄹ',
-                   completed: false
+                   completed: false,
+                   info: 'ㄱㅁㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄹ'
                },
                {
                    text: 'test-todo2',
-                   completed: true
+                   completed: true,
+                   info: 'ㄱㅁㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄹ'
                },
                {
                    text: 'test-todo3',
-                   completed: false
+                   completed: false,
+                   info: 'ㄱㅁㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄹ'
                },
                
            ]
@@ -43,15 +46,22 @@ var todoApp = new Vue({
             const todo = {
                 //document.querySelector('input.input-todo').nodeValue,
                 text: input,
-                completed: false
+                completed: false,
+                info: ''
             };
-            this.todos.push(todo);  
+            this.todos.push(todo); 
+            console.log(this.todos);
         },
         completeTodo(index){
+            console.log(index);
             this.todos[index].completed = !this.todos[index].completed;
         },
         deleteTodo(index){
-            
+            this.todos.splice(index, 1);
+        },
+        openPopup(index){
+            console.log(`openPopUp`);
+
         }
     },
     

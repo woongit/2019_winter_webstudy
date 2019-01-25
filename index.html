@@ -10,6 +10,7 @@
     <script src="js/vue.js"></script>
 </head>
 
+
 <body>
     <h2><a href="index.html">mainpage</a><img src="source/taebo.gif" width="7%" height="7%"></h2>
     <div id="grid">
@@ -21,18 +22,26 @@
             <li><a href="3.html">CONTACT</font></a></li>
         </ol>
         <div id="article">
+
+                
             <h1>ToDo</h1>
             <div class="app-container">
                 <div id="todo">
-                    <input v-model="message">
+                    <input v-model="message" placeholder="할일을 입력하시오.">
                     <button v-on:click="addTodo(message)">추가</button>
                     <ol>
-                        <todo-item v-for="item in todos" v-bind:todo="item" v-bind:key="item.text">
-                            <img v-if="item.completed" src="source/todo_done.png" ><img v-else src="source/todo_default.png">
-                        </todo-item>
-                        <!--  <li v-for="todo in todos">
-                            <p>{{todo.text}}<img src="source/button_search.png" alt="5px"></p>
-                        </li> -->
+                        <!-- <todo-item v-for="item in todos" v-bind:todo="item" v-bind:key="item.text">
+                        </todo-item> -->
+                         <li v-for="(todo, index) in todos">
+                                <div v-if='todo.completed'>{{todo.text}}<img v-on:click="completeTodo(index)" src="source/todo_done.png">
+                                    <img v-on:click="deleteTodo(index)" src="source/del.png">
+                                    <img v-on:click="openPopup(index)" src="source/search.png"></div>
+                                <div v-else>{{todo.text}}<img v-on:click="completeTodo(index)" src="source/todo_default.png">
+                                    <img v-on:click="deleteTodo(index)" src="source/del.png">
+                                    <img v-on:click="openPopup(index)" src="source/search.png"></div>
+                               
+                            <!-- <p>{{todo.text}}<img src="source/button_search.png" alt="5px"></p> -->
+                        </li>
                     </ol>
                 </div>
 
