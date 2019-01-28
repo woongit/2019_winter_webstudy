@@ -40,17 +40,18 @@ var todoApp = new Vue({
        }
     },
     methods: {
-        addTodo(input){
-            console.log(input)
+        addTodo(){
+            console.log(this.message)
             //input.preventDefault();
             const todo = {
                 //document.querySelector('input.input-todo').nodeValue,
-                text: input,
+                text: this.message,
                 completed: false,
                 info: ''
             };
             this.todos.push(todo); 
             console.log(this.todos);
+            this.message='';
         },
         completeTodo(index){
             console.log(index);
